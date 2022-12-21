@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { OpeningHours } from "./components/OpeningHours/OpeningHours";
+import { Box, Card, Skeleton } from "@mui/material";
+import { useOpeningHours } from "./api/data-hooks";
+import { styles } from "./styles/App";
 
 function App() {
+  // In a real world scenario, the Shop ID would come from a parent component such as a Shop page
+  const openingHours = useOpeningHours(89367946398743);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <section>
+        {openingHours ? (
+          <Box style={styles.container}>
+            <Card style={styles.card} tabIndex={0}>
+              <OpeningHours openingHours={openingHours} />
+            </Card>
+          </Box>
+        ) : (
+          <Skeleton />
+        )}
+      </section>
+    </main>
   );
 }
 

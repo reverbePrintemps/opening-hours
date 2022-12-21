@@ -28,4 +28,23 @@ export const globalStyles = {
   },
 };
 
+const gs = globalStyles;
+
+export const styles = {
+  container: {
+    display: "flex",
+    height: "100vh",
+    background: gs.background["app--cultured-grey-light"],
+  },
+  card: {
+    width: "100%",
+    margin: "auto",
+    padding: "32px",
+    // Arbitrary max width to allow for longest possible time (ie. XX:XX AM - XX:XX PM)
+    maxWidth: "380px",
+    borderRadius: "12px",
+    // Weird yet necessary
+    boxSizing: "border-box" as "border-box",
+    boxShadow: `2px 2px 4px 0px ${gs.background["shadow--cultured-grey"]}`,
+  },
 };
